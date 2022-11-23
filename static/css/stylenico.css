@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0%;
+}
+
+#contenedornicostyle{
+    width: 1800px;
+    height: 1000px;
+    background: white;
+    margin: 0.5em auto;
+    padding: 0.5em;
+}
+
+#headernicostyle{
+    height: 20%;
+    background: black;
+    border-radius: 1em;
+    margin: 1em;
+}
+
+#navvnicostyle{
+    height: 10%;
+    background: black;
+    border-radius: 1em;
+    margin: 1em;
+}
+
+#contenidonicostyle{
+    height: 53%;
+    border-radius: 1em;
+    margin: 1em;
+}
+
+#footernicostyle{
+    height: 10%;
+    background: black;
+    border-radius: 1em;
+    margin: 1em;
+}
+
+#sectionnicostyle{
+    height: 95%;
+    width: 71%;
+    background: black;
+    border-radius: 1em;
+    margin: 0.5em;
+    float: right;
+}
+
+#asidenicostyle{
+    height: 95%;
+    width: 25%;
+    background: black;
+    border-radius: 1em;
+    margin: 0.5em;
+    float: left;
+}
+
+.containernicostyle{
+    position: relative;
+    width: 430px;
+    height: 410px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 30px;
+    margin-top: 8%;
+}
+
+.containernicostyle .cardnicostyle{
+    float: left;
+    width: 80px;
+    position: relative;
+    height: 100px;
+    background: black;
+    margin: 30px 10px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0.5px 10px white;
+    transition: 0.3px ease-in-out;
+    margin-top: 5%;
+}
+
+.containernicostyle .cardnicostyle .imgBxnicostyle{
+    position: relative;
+    width: 60px;
+    height: 70px;
+    top: -60px;
+    left: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 1.2);
+}
+
+.containernicostyle .cardnicostyle .imgBxnicostyle img{
+
+    max-width: 100%;
+    border-radius: 10px;
+}
+.imgBxnicostyle:hover img {
+    transform: scale(1.1);
+}
