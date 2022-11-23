@@ -1,0 +1,18 @@
+{% extends 'fiambres/listado_productos.html' %}
+{% block titulo %}
+    Eliminación de usuarios
+{% endblock titulo %}
+{% block barradebusqueda %} 
+<br>
+<br>
+<br>
+{% endblock barradebusqueda %} 
+{% block categorias %}
+{% endblock categorias %}
+{% block body %}
+<form method="POST">
+    {% csrf_token %}
+    <h2>¿Desea eliminar el registro {{ usuarios.username }} ?</h2>
+        <button type="submit">Eliminar</button>      
+</form>
+{% endblock body %}

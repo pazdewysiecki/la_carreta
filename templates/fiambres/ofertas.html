@@ -1,0 +1,71 @@
+{% extends 'fiambres/listado_productos.html' %}
+{% block titulo %}
+    Ofertas
+{% endblock titulo %}
+{% block barra %}
+{% endblock barra %}
+{% block categorias %}
+{% endblock categorias %} 
+{% block header %}
+{% endblock header %}
+{% block body %}    
+<section class="py-5">
+    <div class="container-xl px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-6 row-cols-md-6 ">
+            {% for product in products %}
+            <div class="card m-2 float-sm-left" style="width: 12rem;">
+                <a href="{% url 'fiambres:detail' product.slug %}"><img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.slug }}"></a>
+                <div class="card-body">
+                  <h5 class="card-title">{{ product.name }}</h5>
+                  <p class="card-text">${{ product.price }}</p>
+                  <a href="{% url 'add_product' product.id %}" class="btn btn-dark mt-auto">Añadir</a>
+                </div>
+              </div>
+            {% endfor %}  
+        </div>
+    </div>      
+
+</section> 
+
+    
+
+
+    <footer class="py-22 bg-black width-100%">
+            <div class="container"><p class="text-center text-white"> losmillosistemas</p></div>
+            <div class="text-white bg-black" class="nav-item" >	
+            &nbsp<i class="fas fa-map-marker"></i> Marcelo T. de Alvear 465, Don Torcuato.<span style="text-align:left; margin-left:15px; border-bottom: 1px solid rgba(125,125,125,0.3);"></span>	
+            <i class="fas fa-envelope">  011 4748-7404   &nbsp&nbsp&nbsp&nbsp</i><span style="text-align:right; margin-right:25px; border-bottom: 1px solid rgba(125,125,125,0.3);"></span>
+            </div>
+    </footer>
+</body>
+{% endblock body %}
+{%block foott %}
+{%endblock foott %}
+
+{%block extrajs1 %}
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+    function abrir_modal__creacionproductos(url){
+    $('#creacionproductos').load(url, function(){
+        $(this).modal('show');
+    });
+    }
+    function abrir_modal_edicionproductos(url){
+    $('#edicionproductos').load(url, function(){
+        $(this).modal('show');
+    });
+    }
+    function abrir_modal_buscarproductos(url){
+    $('#buscarproductos').load(url, function(){
+        $(this).modal('show');
+    });
+    }
+    function abrir_modal__creacionclientetramite(url){
+    $('#creacionproductos_').load(url, function(){
+        $(this).modal('show');
+    });
+    }
+    </script>
+{%endblock extrajs1 %}
+
+

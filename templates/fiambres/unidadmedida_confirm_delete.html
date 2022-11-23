@@ -1,0 +1,23 @@
+{% extends 'fiambres/listado_productos.html' %}
+{% block titulo %}
+    confirmación de eliminación de unidad de medida
+{% endblock titulo %}
+{% block barra %}
+{% endblock barra %}
+{% block barradebusqueda %} 
+<br>
+<br>
+<br>
+{% endblock barradebusqueda %} 
+{% block categorias %}
+{% endblock categorias %}
+{% block body %}
+
+<form style="text-align: center; " method="post">
+    {% csrf_token %}
+    <p><strong>¿Desea eliminar el registro {{ object }}?</strong></p>
+    <button type="submit">Confirmar</button>
+</form>
+
+
+{% endblock body %}

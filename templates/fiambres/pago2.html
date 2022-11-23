@@ -1,0 +1,41 @@
+{% extends 'fiambres/listado_productos.html' %}
+{% load static %}
+{% block titulo %}
+    Checkout
+{% endblock titulo %}
+{% block barra %}
+{% endblock barra %}
+{% block barradebusqueda %} 
+<br>
+<br>
+<br>
+{% endblock barradebusqueda %} 
+{% block categorias %}
+{% endblock categorias %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+    <div class="checkout-btn"></div>
+    <script src="https://sdk.mercadopago.com/js/v2"></script> 
+    <script>
+          // Agrega credenciales de SDK
+      const mp = new MercadoPago("APP_USR-cefb2ae3-9198-4a52-b30a-019df9efd882", {
+        locale: "es-AR",
+      });
+    
+      // Inicializa el checkout
+      mp.checkout({
+        preference: {
+            id: '{{preference.id}}',
+        },
+        render: {
+          container: ".checkout-btn", // Indica el nombre de la clase donde se mostrará el botón de pago
+          label: "Pagar", // Cambia el texto del botón de pago (opcional)
+        },
+      });
+    
+    </script>
+
+
+{% endblock body %}
+

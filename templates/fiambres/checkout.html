@@ -1,0 +1,125 @@
+{% extends 'fiambres/listado_productos.html' %}
+{% load static %}
+{% block titulo %}
+    Checkout
+{% endblock titulo %}
+{% block barra %}
+{% endblock barra %}
+{% block barradebusqueda %} 
+<br>
+<br>
+<br>
+{% endblock barradebusqueda %} 
+{% block categorias %}
+{% endblock categorias %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+    <div class="container text-center"></div>
+        <h1>Paga con Mercadopago</h1>
+            <div class="checkout-btn"></div>
+    <script src="https://sdk.mercadopago.com/js/v2"></script> 
+    <script>
+        // Agrega credenciales de SDK
+    const mp = new MercadoPago("APP_USR-cefb2ae3-9198-4a52-b30a-019df9efd882", {
+        locale: "es-AR",
+    });
+
+    // Inicializa el checkout
+    mp.checkout({
+        preference: {
+            id: '{{preference.id}}',
+        },
+        render: {
+        container: ".checkout-btn", // Indica el nombre de la clase donde se mostrará el botón de pago
+        label: "Pagar", // Cambia el texto del botón de pago (opcional)
+        },
+    });
+
+    </script>
+    &nbsp
+    &nbsp
+    <div>
+        <div>
+            <form method="get">
+            {% csrf_token %}
+            </form>
+        </div>
+    </div>
+    </div>
+    {% if request.session.cart.items %}
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading-{{ forloop.counter }}">
+                <button href="#accordion_one" class="accordion-button" type="button" data-bs-toggle="collapse" data-parent="#accordion" data-bs-target="#collapse-{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse-{{ forloop.counter }}">
+            <h5>Total $: {{total_carrito}}</h5> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp                                       <h5>SU PEDIDO HA SIDO CONFIRMADO CON EXITO</h5>  &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp  &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp</button>
+        </h2>
+        <div id="collapse-{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ forloop.counter }}" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <table id="listado_pedido" class="thead-dark" style= "width: 75%, " >
+                    <thead>
+                        <th scope="col">Nombre del producto</th>
+                        <th scope="col">Precio</th>
+                        <th scope="col">Extracto</th>
+                        <th scope="col">Cantidad</th>
+                    </thead>
+                    <tbody>    
+                    {% for key, value in request.session.cart.items %}
+                    <tr>
+                        <td>{{value.name}}</td>
+                        <td>{{value.price}}</td>
+                        <td>{{value.excerpt}}</td>
+                        <td>{{value.quantity}}</td>
+                    </tr>
+                    {% endfor %}
+                    <tbody>     
+                <table>
+            </div>
+        </div>
+        </div>
+    </div>
+{% else %}
+<h2>No existen órdenes</h2>
+{% endif %}
+{% endblock body %}
+{%block extrajs %}
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/af-2.3.7/b-2.2.2/date-1.1.2/fc-4.0.2/r-2.2.9/datatables.min.js"></script>
+                <script>
+                    var $ = jQuery.noConflict();
+                    $(document).ready(function(){
+                                $('#listado_pedido').DataTable({
+                                    language: {
+                                            decimal: "",
+                                            emptyTable: "No hay información",
+                                            info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                                            infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+                                            infoFiltered: "(Filtrado de _MAX_ total entradas)",
+                                            infoPostFix: "",
+                                            thousands: ",",
+                                            lengthMenu: "Mostrar _MENU_ Entradas",
+                                            loadingRecords: "Cargando...",
+                                            processing: "Procesando...",
+                                            search: "Buscar:",
+                                            zeroRecords: "Sin resultados encontrados",
+                                            paginate: {
+                                            first: "Primero",
+                                            last: "Ultimo",
+                                            next: "Siguiente",
+                                            previous: "Anterior",
+                                            }
+                                        },
+                                    lengthMenu: [[15,50,100],[15,50,100]],
+    
+                            })
+                    })
+
+                </script>
+
+
+{%endblock extrajs %}
+{%block footer %}
+{%endblock footer %}
+<footer class="py-5 bg-dark">
+    <div class="container"><p class="m-0 text-center text-white"> losmillo 2022</p></div>
+</footer>

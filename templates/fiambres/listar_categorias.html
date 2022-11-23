@@ -1,0 +1,121 @@
+{% extends 'fiambres/listado_productos.html' %}
+{% block titulo %}
+    Listar categorias
+{% endblock titulo %}
+{% block barra %}
+{% endblock barra %}
+{% block barradebusqueda %} 
+<br>
+<br>
+<br>
+{% endblock barradebusqueda %} 
+{% block categorias %}
+{% endblock categorias %}
+{% block header %}
+{% endblock header %}
+{% block body %}    
+</body> 
+    &nbsp
+    <div><button style="margin-left: 10px" class="btn btn-outline-dark" type="button" onclick="abrir_modal__creacioncategorias('{% url 'fiambres:crear__categorias'%}')">Crear categorias</button>
+    &nbsp              
+    &nbsp              
+    &nbsp              
+    &nbsp         
+    <div class="container">
+        <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+            <form method="get">
+            {% csrf_token %}
+                <div id ="custom-search-input">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar.." name="buscar" value="">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary-dark" type="submit">
+                        <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    <div>
+                </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+        {% if categories %}
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">Categoría</th>
+                <th scope="col">Código</th>
+                <th scope="col">Destacado</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for category in categories %}
+            <tr>
+                <th scope="row">{{category.name}}</th>
+                <td>{{category.id}}</td>
+                <td>{{category.featured}}</td>
+                <td>
+                    <button class="btn btn-dark" type="button" onclick="abrir_modal_edicioncategorias('{% url 'fiambres:editar_categorias' category.id %}')">Editar</a>
+                </td>
+                <td>
+                    <a href="{% url 'fiambres:eliminar_categorias' category.id %}" button class="btn btn-danger" type="button" data-dismiss = "modal">Eliminar</a>
+                </td>
+                <tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <h2>No existen categorías</h2>
+        {% endif %}
+
+        <div class="modal fade" id="creacioncategorias" role="dialog"> 
+        </div>
+        <div class="modal fade" id="edicioncategorias" role="dialog"> 
+        </div>
+        <div class="modal fade" id="buscarcategorias" role="dialog"> 
+        </div>
+        <div class="modal fade" id="creacioncategorias_" role="dialog"> 
+        </div>
+    </div>
+
+
+
+    <footer class="py-22 bg-black width-100%">
+            <div class="container"><p class="text-center text-white"> losmillosistemas</p></div>
+            <div class="text-white bg-black" class="nav-item" >	
+            &nbsp<i class="fas fa-map-marker"></i> Marcelo T. de Alvear 465, Don Torcuato.<span style="text-align:left; margin-left:15px; border-bottom: 1px solid rgba(125,125,125,0.3);"></span>	
+            <i class="fas fa-envelope">  011 4748-7404   &nbsp&nbsp&nbsp&nbsp</i><span style="text-align:right; margin-right:25px; border-bottom: 1px solid rgba(125,125,125,0.3);"></span>
+            </div>
+    </footer>
+</body>
+{% endblock body %}
+{%block foott %}
+{%endblock foott %}
+
+{%block extrajs1 %}
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+    function abrir_modal__creacioncategorias(url){
+    $('#creacioncategorias').load(url, function(){
+        $(this).modal('show');
+    });
+    }
+    function abrir_modal_edicioncategorias(url){
+    $('#edicioncategorias').load(url, function(){
+        $(this).modal('show');
+    });
+    }
+    function abrir_modal_buscarcategorias(url){
+    $('#buscarcategorias').load(url, function(){
+        $(this).modal('show');
+    });
+    }
+    function abrir_modal__creacioncategorias(url){
+    $('#creacioncategorias_').load(url, function(){
+        $(this).modal('show');
+    });
+    }
+    </script>
+{%endblock extrajs1 %}
+
+

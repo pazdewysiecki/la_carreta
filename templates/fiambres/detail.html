@@ -1,0 +1,62 @@
+{% extends 'fiambres/listado_productos.html' %}
+{% block titulo %}
+    Listado de Productos
+{% endblock titulo %}
+{% block barradebusqueda %} 
+<br>
+<br>
+<br>
+{% endblock barradebusqueda %} 
+{% block categorias %}
+{% endblock categorias %}
+{% block barra %}
+<div class="container">
+    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <form method="get">
+          {% csrf_token %}
+              <div id ="custom-search-input">
+              <div class="input-group">
+                  <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar.." name="buscar" value="">
+                  <div class="input-group-append">
+                      <button class="btn btn-primary-dark" type="submit">
+                      <i class="fas fa-search fa-sm"></i>
+                      </button>
+                 <div>
+              </div>
+              </div>
+        </form>
+    </div>
+</div>
+{% endblock barra %}
+
+{% block body %}
+
+&nbsp
+<div class="container" style="justify-items: center;">
+    <div class="row">
+        <div class="col-9 align-items-xl-center ">
+            <div class="row align-items-center- " >
+                {% for product in products %}
+                <div class="col-md-3 col-sm-12 col-lg-4" style="justify-items: center;">
+                    <div class="card m-4" style="justify-items: center;">
+                        <img src="{{ product.image.url }}" style="width: 100%;" alt="{{ item.slug }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <p class="card-text">{{ product.excerpt }}</p>
+                            <p class="card-text">{{ product.detail }}</p>
+                            <p class="card-text">${{ product.price }}</p>
+                        </div>
+                        <div class='card-footer text-center'>
+                            <a href="{% url 'add_product' product.id %}" class="btn btn-dark">Añadir al carrito</a>
+                        </div>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+            {% comment %} Widget {% endcomment %}
+        </div>
+    </div>
+<div>
+{% endblock body %}

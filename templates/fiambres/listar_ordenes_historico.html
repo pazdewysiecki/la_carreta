@@ -1,0 +1,127 @@
+{% extends 'fiambres/listado_productos.html' %}
+{% load static %}
+{% block titulo %}
+    Listado histórico por usuario
+{% endblock titulo %}
+{% block barra %}
+{% endblock barra %}
+{% block barradebusqueda %} 
+<br>
+<br>
+<br>
+{% endblock barradebusqueda %} 
+{% block categorias %}
+{% endblock categorias %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+&nbsp
+<div>
+    <div>
+        <form method="get">
+          {% csrf_token %}
+        </form>
+    </div>
+</div>
+</div>
+    {% if ordenes_usuarios %}
+    {% for orden_usuario in ordenes_usuarios %}
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading-{{ forloop.counter }}">
+                <button href="#accordion_one" class="accordion-button" type="button" data-bs-toggle="collapse" data-parent="#accordion" data-bs-target="#collapse-{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse-{{ forloop.counter }}">
+            <h5>Numero de orden: {{orden_usuario.id}}</h5> &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp                                       <h5>Total de orden {{orden_usuario.total_amt}}</h5>  &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp &nbsp&nbsp&nbsp                                  <h5>Estado de orden: {{orden_usuario.estado_orden}}</h5></button>
+        </h2>
+        <div id="collapse-{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ forloop.counter }}" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Número de orden</th>
+                        <th scope="col">Total $</th>
+                        <th scope="col">Fecha Orden</th>
+                        <th scope="col">Pedido</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">{{orden_usuario.id}}</th>
+                        <th scope="row">{{orden_usuario.total_amt}}</th>
+                        <th scope="row">{{orden_usuario.fecha_order}}</th>
+                        <td>
+                            <a href="{% url 'fiambres:listar_ordenes_usuario_id' orden_usuario.id %}" button class="btn btn-dark" type="button" data-dismiss = "modal">Ver pedido</a>
+                        </td>
+                    <tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h2>No existen órdenes</h2>
+    {% endif %}
+
+
+    <div class="modal fade" id="edicion_orden" role="dialog"> 
+    </div>
+    <div class="modal fade" id="creacionusuario_" role="dialog"> 
+    </div>
+    <div class="modal fade" id="edicionusuario" role="dialog"> 
+    </div>
+    {% endblock body %}
+    {%block extrajs %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/af-2.3.7/b-2.2.2/date-1.1.2/fc-4.0.2/r-2.2.9/datatables.min.js"></script>
+            <script>
+                var $ = jQuery.noConflict();
+                $(document).ready(function(){
+                            $('#lista_usuarios').DataTable({
+                                language: {
+                                        decimal: "",
+                                        emptyTable: "No hay información",
+                                        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                                        infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+                                        infoFiltered: "(Filtrado de _MAX_ total entradas)",
+                                        infoPostFix: "",
+                                        thousands: ",",
+                                        lengthMenu: "Mostrar _MENU_ Entradas",
+                                        loadingRecords: "Cargando...",
+                                        processing: "Procesando...",
+                                        search: "Buscar:",
+                                        zeroRecords: "Sin resultados encontrados",
+                                        paginate: {
+                                        first: "Primero",
+                                        last: "Ultimo",
+                                        next: "Siguiente",
+                                        previous: "Anterior",
+                                        }
+                                    },
+                                lengthMenu: [[5,10,50,100],[5,10,50,100]],
+
+                        })
+                })
+
+            </script>
+            <script type="text/javascript">
+                        var $ = jQuery.noConflict();
+                        function abrir_modal_edicion_orden(url){
+                        $('#edicion_orden').load(url, function(){
+                            $(this).modal('show');
+                        });
+                        }
+                        function abrir_modal_creacionusuario(url){
+                        $('#creacionusuario').load(url, function(){
+                            $(this).modal('show');
+                        });
+                        }
+                        function abrir_modal__creacionusuario(url){
+                        $('#creacionusuario_').load(url, function(){
+                            $(this).modal('show');
+                        });
+                        }
+            </script>
+
+
+{%endblock extrajs %}

@@ -1,0 +1,309 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="es-ES">
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="format-detection" content="telephone-no">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="description" content="Suarez Hnos San Isidro es una empresa de servicios dedicada a los trámites judiciales y registrales, en Capital Federal, provincia de Buenos Aires y el interior del país. Suarez Hnos San Isidro realiza todos sus trámites con responsabilidad, esmerada atención y a un costo muy económico."/>
+        <meta name="keywords" content="Suarez Hnos, San Isidro, Trámites registrales, Trámites Judiciales, Casilleros, Trámites en general, Gestoría Judicial, Trámites legales, Judiciales, Gestiones judiciales, Registro de las personas, Procuración, Partidas, Registro de automotor, Certificaciones legales, certificaciones, Oficios, Diligencias, Expedientes, Inscripciones, Inscripciones de divorcio, Fotocopias autenticadas, poderes, firmas, mandamientos, Notificaciones, Ley 22172, Trámites, Registro de la propiedad, "/>
+        
+        <link rel="canonical" href="{% static 'http://www.suarezhnos-si.com.ar/' %}" />
+        <link rel="publisher" href="{% static 'https://www.behance.net/aleberteuris' %}"/>
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}"/>
+        <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet" type="text/css">
+        <link rel="{% static 'shortcut icon' %}" href="{% static 'img/favicon.ico' %}" />
+              
+        <title>La Carreta</title>
+        
+    </head>
+    
+               <!--LOADER-->
+        <div id="loader-wrapper">
+            <div class="loader-content">
+                <div class="cube1 ar-cube"></div>
+                <div class="cube2 ar-cube"></div>
+            </div>
+        </div>
+        <!--HEADER-->
+        <header class="v-header header">
+            <div class="container clearfix nopadding">
+                <div id="logo" class="text-white"><a href="{% url 'index'%}"></a>La Carreta</div>
+                <div class="menu-button  m-menu-button">
+                </div>
+                <div>
+                    <nav class="nav a-nav clearfix">
+                        <ul >
+                            <li class="active" ><a class="scroll-to-link" href="#Inicio">Inicio</a></li>
+                            <li   ><a class="scroll-to-link" href="#about">Nosotros</a></li>
+                            <li   ><a class="scroll-to-link" href="#services" >Productos</a></li>
+                            <li  ><a class="scroll-to-link" href="#contact" >Contacto</a></li>
+                            <li  ><a class="scroll-to-link" href="{% url 'login'%}" >Login</a></li>
+                            <li class="text-white nav-item"><a class="text-white nav-link active" aria-current="page" href="{% url 'fiambres:listado_productos' %}">Tienda</a></li>
+                            <li class="text-white nav-item"><a class="text-white nav-link active" aria-current="page" type="button" onclick="abrir_modal_REGISTRARSE('{% url 'usuarios:registrar_usuarios' %}')">Registrarme</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        {% block body %}
+
+     
+    
+        <!--BLOCK "TYPE 1"-->
+        <div class="v-banner-container scroll-to-block" >
+             <div class="swiper-container" data-mode="horizontal"  data-slides-per-view="1" data-loop="1">
+                 <div class="swiper-wrapper ">
+                   <div class="swiper-slide banner-slide">
+                       <img class="center-image" src="{% static 'img/picadapreparada.jpg' %}" alt="img"/>
+                         <div class="container">
+                           <div class="banner-content">
+                               <h1 class="v-banner-title text-center">Tienda Online</h1></div>
+                         </div>
+                     </div>
+                     <div class="swiper-slide banner-slide">
+                       <img class="center-image" src="{% static 'img/localsalame.jpg' %}" alt="img"/>
+                         <div class="container">
+                             <div class="banner-content">
+                                 <h1 class="v-banner-title">
+                                Encontra los productos que mas te gustan
+                                 </h1>
+                             </div>
+                       </div>
+                   </div>
+                     <div class="swiper-slide banner-slide">
+                         <img class="center-image" src="{% static 'img/jamones.jpg' %}" alt="img"/>
+                         <div class="container">
+                           <div class="banner-content">
+                             <h1 class="v-banner-title">
+                                  A los mejores precios
+                               </h1>
+                           </div>
+                       </div>
+                   </div>
+                 </div>
+                 <div class="container container-banner-nav">
+                     <div class="banner-nav-left"><img src="{% static 'img/more-grey-prev.png' %}" alt="ico"/></div>
+                     <div class="banner-nav-right"><img src="{% static 'img/more-grey.png' %}" alt="ico"/></div>
+                 </div>
+                 <div class="pagination pagination-hide pagination-banner"></div>
+             </div>
+        </div>
+        <!--BLOCK "TYPE 2"-->
+        <section class="v-about-block block-style scroll-to-block" >
+        <div class="container">
+              <h1 class="important block-title">La Carreta</h1>
+                <div id="logo" style="float: center;"><a href="{% url 'index'%}"><img src="{% static 'img/lacarreta.jpg' %}" alt="logo" width="180" height="180" ></a></div>
+              <h3 class="important sub-title">Lácteos, fiambres y mucho más</h3>
+          <p class="sub-title">Lacteos la carreta es una empresa familiar nacida hace mas de 30 años dedicada a la venta tanto mayorista como minorista de Fiambres, quesos, snacks, tapas de empanada, pascualinas. Nos destacamos por vender primeras marcas y a precios muy accesibles.           
+		  <p class="sub-title">           
+              Asimismo, contamos con nuestra propia marca ofreciendo fiambres, quesos y tapas de empanda de altisima calidad y buenos precios. 
+		  <p class="sub-title">             
+              Nuestros clientes confian en la calidad de nuestros productos y destacan nuestra valiosa atencion</p>
+          </div>
+        </section>
+        <!--BLOCK "TYPE 3"-->
+        <section class="block-style v-servise-block scroll-to-block" >
+            <div class="container">
+              <h1 class="important block-title">Productos</h1>
+              <p class="sub-title">
+                Fiambreria, venta por menor y por mayor de queso, fiambres, embutidos, etc.
+                Telefono: 4748-7404 WhatsApp: 1151791205.</p>
+            </div>
+            <div class="tab-wrapper">
+                <div class="tab-nav-wrapper container-fluid">
+                    <div  class="nav-tab nav-tab-serv clearfix">
+                        <div class="nav-tab-item nav-item-serv active">Salames</div>
+                        <div class="nav-tab-item nav-item-serv">Picadas</div>
+                        <div class="nav-tab-item nav-item-serv">Nuestros Productos</div>
+                        <div class="nav-tab-item nav-item-serv"> Picadas Premium</div>  
+                        <div class="nav-tab-item nav-item-serv"> Otros</div>
+        
+                    </div>
+                </div>
+              <div class="tabs-content clearfix">
+                    <div class="tab-info active">
+                        <div class="col-sm-12 nopadding">
+                            <div class="tab-serv-content tab-serv-text-content">
+                                <img class="center-image" src="{% static 'img/localsalame.jpg' %}" alt="img"/>
+                                <div class="tab-serv-text">
+                                  <h3>
+                          </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-info">
+                        <div class="col-sm-12 nopadding">
+                            <img class="center-image" src="{% static 'img/picada4.jpg' %}" alt="img"/>
+                            <div class="tab-serv-content tab-serv-text-content">
+                                <div class="tab-serv-text">
+                                    </div>
+                            </div>
+                        </div>
+                </div>
+
+                    <div class="tab-info">
+                        <div class="col-sm-12 nopadding">
+                            <img class="center-image" src="{% static 'img/lamejor2.jpg' %}" alt="img"/>
+                            <div class="tab-serv-content tab-serv-text-content">
+                                <div class="tab-serv-text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-info">
+                        <div class="col-sm-12 nopadding">
+                            <div class="tab-serv-text"><img class="center-image" src="{% static 'img/picadapreparada.jpg' %}" alt="img" />
+                            <div class="tab-serv-content tab-serv-text-content">
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                <div class="tab-info">
+                        <div class="col-sm-12 nopadding">
+                            <div class="tab-serv-content tab-serv-text-content">
+                                <div class="tab-serv-text">
+                                </div>
+                            </div>
+                        </div> 
+                  </div>
+                </div>
+            </div>
+        </section>
+
+        <!--BLOCK "TYPE 9"-->
+        <section class="block-style contact scroll-to-block" >
+          <h2 class="block-title">CONTACTO</h2>
+          <p class="sub-title">
+                Si tiene alguna duda, no dude en consultarnos. Nuestro equipo de profesionales le responderá en breve.
+            </p>
+            <div class="container contact-us">
+                <div class="row">
+                    <div class="col-md-4 contact-info v-contact-info">
+                      <h5>Dirección</h5>
+                      <p>Marcelo T. de Alvear 465, B1611ELC ,</p>
+                      <p>Buenos Aires, Provincia de Buenos Aires </p>
+                      <h5>teléfono</h5>
+                      <a class="phone" href="tel:01157880410">011 4748-7404</a>
+                      <h5>email</h5>
+                      <p><a class="mail-us" href="mailto:lacteoslacarretasrl@gmail.com">lacteoslacarretasrl@gmail.com</a></p>
+                    </div>
+                    <div class="col-md-8">
+                        <form class="red-form" action="contacto.php" method="post">
+                            <input class="input-style"  type="text" name="name" required placeholder="Nombre">
+                            <input class="input-style" type="email" name="email" required placeholder="E-mail">
+                            <input class="input-style" type="text" name="subject" required placeholder="Asunto">
+                            <textarea  class="tx-style" name="message" required placeholder="Mensaje"></textarea>
+                            <input class="send" type="submit" value="Enviar"/>
+                            
+                            <div class="container-fluid">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="modal fade" id="REGISTRARSE" role="dialog"> 
+        </div>
+        {% endblock body %}
+        <!--FOOTER-->
+        <footer class="footer">
+            <div class="container container-footer">
+                <a class="text-white" href="#">La Carreta</a>
+                <p class="footer-info s-footer-info">© Copyright 2022 La Carreta Todos los derechos reservados.<br>
+              </p>
+                <div class="ftr-social ar-social">
+        <a class="social-network sc-fb" href="https://www.facebook.com/">
+            <i class="fa fa-facebook"></i>
+        </a>
+        <a class="social-network sc-in" href="#">
+            <i class="fa fa-linkedin"></i>
+        </a>
+      </div>
+          </div>
+            <div class="ftr-nav-container">
+                <div class="container">
+                    <nav class="ftr-nav ar-ftr-nav clearfix">
+                        <ul>
+                            <li  ><a class="scroll-to-link"  href="#home">Inicio</a></li>
+                            <li   ><a class="scroll-to-link"  href="#about">Nosotros</a></li>
+                          <li   ><a class="scroll-to-link"  href="#services" >Productos</a></li>
+                            <li  ><a class="scroll-to-link"  href="#contact">Contacto</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            
+        
+        </footer>
+        {%block extrajs %}
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/af-2.3.7/b-2.2.2/date-1.1.2/fc-4.0.2/r-2.2.9/datatables.min.js"></script>
+                <script>
+                    var $ = jQuery.noConflict();
+                    $(document).ready(function(){
+                                $('#lista_usuarios').DataTable({
+                                    language: {
+                                            decimal: "",
+                                            emptyTable: "No hay información",
+                                            info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                                            infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+                                            infoFiltered: "(Filtrado de _MAX_ total entradas)",
+                                            infoPostFix: "",
+                                            thousands: ",",
+                                            lengthMenu: "Mostrar _MENU_ Entradas",
+                                            loadingRecords: "Cargando...",
+                                            processing: "Procesando...",
+                                            search: "Buscar:",
+                                            zeroRecords: "Sin resultados encontrados",
+                                            paginate: {
+                                            first: "Primero",
+                                            last: "Ultimo",
+                                            next: "Siguiente",
+                                            previous: "Anterior",
+                                            }
+                                        },
+                                    lengthMenu: [[5,10,50,100],[5,10,50,100]],
+    
+                            })
+                    })
+
+                </script>
+                <script type="text/javascript">
+                            var $ = jQuery.noConflict();
+                            function abrir_modal_REGISTRARSE(url){
+                            $('#REGISTRARSE').load(url, function(){
+                                $(this).modal('show');
+                            });
+                            }
+                            function abrir_modal_creacionusuario(url){
+                            $('#creacionusuario').load(url, function(){
+                                $(this).modal('show');
+                            });
+                            }
+                            function abrir_modal__creacionusuario(url){
+                            $('#creacionusuario_').load(url, function(){
+                                $(this).modal('show');
+                            });
+                            }
+                </script>
+
+
+    {%endblock extrajs %}
+
+
+
+        <script src="{% static 'js/jquery-1.11.2.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/idangerous.swiper.min.js' %}"></script>
+        <script src="{% static 'js/magnific.js' %}"></script>
+        <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;language=es"></script>
+        <script src="{% static 'js/map.js' %}"></script>
+        <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+        <script src="{% static 'js/placeholder.min.js' %}"></script>
+        <script src="{% static 'js/global.js' %}"></script>
+    </body>
+</html>

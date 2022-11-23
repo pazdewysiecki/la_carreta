@@ -1,0 +1,114 @@
+{% extends 'fiambres/listado_productos.html' %}
+{% load static %}
+{% block titulo %}
+    Listado de usuarios
+{% endblock titulo %}
+{% block barra %}
+{% endblock barra %}
+{% block barradebusqueda %} 
+<br>
+<br>
+<br>
+{% endblock barradebusqueda %} 
+{% block categorias %}
+{% endblock categorias %}
+{% block header %}
+{% endblock header %}
+{% block body %}
+&nbsp
+<div>
+    <div>
+        <form method="get">
+          {% csrf_token %}
+        </form>
+    </div>
+</div>
+</div>
+    {% if orderitems %}
+    &nbsp
+    <table id="lista_usuarios" class="thead-dark" style= "width: 75%, " >
+        <thead>
+            <th >Nro de Orden</th>
+            <th >Productos</th>
+            <th >Precio</th>
+            <th >Cantidad</th>
+            <th >Total</th>
+        </thead>
+        <tbody>
+            {% for orderitem in orderitems %}
+            <tr>
+                <th scope="row">{{orderitem.order}}</th> 
+                <th scope="row">{{orderitem.items}}</th>
+                <th scope="row">{{orderitem.price}}</th>
+                <th scope="row">{{orderitem.quantity}}</th>
+                <th scope="row">{{orderitem.total}}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <h2>No existen usuarios registrados</h2>
+    {% endif %}
+
+
+    <div class="modal fade" id="edicionusuario" role="dialog"> 
+    </div>
+    <div class="modal fade" id="creacionusuario_" role="dialog"> 
+    </div>
+    <div class="modal fade" id="edicionusuario" role="dialog"> 
+    </div>
+    {% endblock body %}
+    {%block extrajs %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/af-2.3.7/b-2.2.2/date-1.1.2/fc-4.0.2/r-2.2.9/datatables.min.js"></script>
+            <script>
+                var $ = jQuery.noConflict();
+                $(document).ready(function(){
+                            $('#lista_usuarios').DataTable({
+                                language: {
+                                        decimal: "",
+                                        emptyTable: "No hay información",
+                                        info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                                        infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+                                        infoFiltered: "(Filtrado de _MAX_ total entradas)",
+                                        infoPostFix: "",
+                                        thousands: ",",
+                                        lengthMenu: "Mostrar _MENU_ Entradas",
+                                        loadingRecords: "Cargando...",
+                                        processing: "Procesando...",
+                                        search: "Buscar:",
+                                        zeroRecords: "Sin resultados encontrados",
+                                        paginate: {
+                                        first: "Primero",
+                                        last: "Ultimo",
+                                        next: "Siguiente",
+                                        previous: "Anterior",
+                                        }
+                                    },
+                                lengthMenu: [[5,10,50,100],[5,10,50,100]],
+
+                        })
+                })
+
+            </script>
+            <script type="text/javascript">
+                        var $ = jQuery.noConflict();
+                        function abrir_modal_edicionusuario(url){
+                        $('#edicionusuario').load(url, function(){
+                            $(this).modal('show');
+                        });
+                        }
+                        function abrir_modal_creacionusuario(url){
+                        $('#creacionusuario').load(url, function(){
+                            $(this).modal('show');
+                        });
+                        }
+                        function abrir_modal__creacionusuario(url){
+                        $('#creacionusuario_').load(url, function(){
+                            $(this).modal('show');
+                        });
+                        }
+            </script>
+
+
+{%endblock extrajs %}

@@ -1,0 +1,157 @@
+
+
+boton andAAA
+<td>
+    <a href="{% url 'fiambres:listar_ordenes_usuario_id' orden_usuario.id %}"><button class="btn btn-dark" type="button">Editar</a>
+</td>
+
+
+offcanvas
+
+
+<nav class="nav2 height=10% with=100% m-0" style="background-color: black;">
+    <button class="btn btn-darkdark" style="width: 100%;" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Categorías</button>
+
+    <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions" aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Backdrop with scrolling</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <p>Try scrolling the rest of the page to see this option in action.</p>
+    </div>
+    </div>
+</nav>      
+
+
+accordion accordion-button
+
+{% if ordenes_usuarios %}
+{% for orden_usuario in ordenes_usuarios %}
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading-{{ forloop.counter }}">
+                <button href="#accordion_one" class="accordion-button" type="button" data-bs-toggle="collapse" data-parent="#accordion" data-bs-target="#collapse-{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse-{{ forloop.counter }}">
+            {{orden_usuario.id}}</button>
+        </h2>
+        <div id="collapse-{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ forloop.counter }}" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Número de orden</th>
+                        <th scope="col">Total $</th>
+                        <th scope="col">Fecha Orden</th>
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Opciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <th scope="row">{{orden_usuario.id}}</th>
+                        <th scope="row">{{orden_usuario.total_amt}}</th>
+                        <th scope="row">{{orden_usuario.fecha_order}}</th>
+                        <th scope="row">{{orden_usuario.user}}</th>
+                        <td>     
+                            <button class="btn btn-dark" type="button" onclick="abrir_modal_edicionproductos('{% url 'fiambres:listar_ordenes_usuario_id' orden_usuario.id %}')">Ver pedido</a>
+                        </td>        
+                    <tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </div>
+{% endfor %}
+{% else %}
+<h2>No existen órdenes</h2>
+{% endif %}
+                    
+
+
+acordeon nuevo
+{% if ordenes_usuarios %}
+{% for orden_usuario in ordenes_usuarios %}
+    <div class="accordion" id="accordionExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="heading-{{ forloop.counter }}">
+            <a href="{% url 'fiambres:listar_ordenes_usuario_id' orden_usuario.id %}"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-parent="#accordion" data-bs-target="#collapse-{{ forloop.counter }}" aria-expanded="false" aria-controls="collapse-{{ forloop.counter }}">
+            {{orden_usuario.total_amt}}</button></a>
+        </h2>
+        <div id="collapse-{{ forloop.counter }}" class="accordion-collapse collapse" aria-labelledby="heading-{{ forloop.counter }}" data-bs-parent="#accordionExample">
+            <div class="accordion-body">
+                <table class="table">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Nombre del producto</th>
+                        <th scope="col">Precio del producto</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Total</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for orderitem in orderitems %}
+                    <tr>
+                        <th scope="row">{{orderitem.items}}</th>
+                        <th scope="row">{{orderitem.price}}</th>
+                        <th scope="row">{{orderitem.quantity}}</th>
+                        <th scope="row">{{orderitem.total}}</th>
+                    <tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        </div>
+    </div>
+{% endfor %}
+{% else %}
+<h2>No existen órdenes</h2>
+{% endif %}
+
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <div class="col-4 mt-5 ">
+                        <div class="card h-100 border border-black ">
+                            <!-- Product image-->
+                            <a href="{% url 'fiambres:detail' product.slug %}"><img class="card-img-top" src="{{ product.image.url }}" alt="{{ product.slug }}"></a>
+                            <!-- Product details-->
+                            <div class="card-body p-4">
+                                <div class="text-center">
+                                    <!-- Product name-->
+                                    <h5 class="fw-bolder">{{ product.name }}</h5>
+                                    <!-- Product price-->
+                                    ${{ product.price }}
+                                </div>
+                            </div>
+                            <!-- Product actions-->
+                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                <div class="text-center"><a class="btn btn-outline-black mt-auto" href="{% url 'add_product' product.id %}">Añadir</a></div>
+                            </div>
+                          
+                        </div>
+                    </div>
+carta 2
+
+                    <section class="py-5">
+                        <div class="container-xl px-4 px-lg-5 mt-5">
+                            <div class="row gx-4 gx-lg-5 row-cols-6 row-cols-md-5 ">
+                                {% for product in products %}
+                                <div class="col-4 mt-2" >
+                                    <div class="card border border-black m-4" style="width: 10rem;">
+                                        <a href="{% url 'fiambres:detail' product.slug %}"></a><img class="card-img-responsive-fluid"  src="{{ product.image.url }}" alt="{{ product.slug }}"></a>
+                                        <div class="card-body">
+                                        <h5 class="card-title">{{ product.name }}</h5>
+                                        ${{ product.price }}
+                                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                            <div class="text-center"><a class="btn btn-outline-black mt-auto" href="{% url 'add_product' product.id %}">Añadir</a></div>
+                                        </div>
+                                        </div>
+                                    </div>
+                                </div>
